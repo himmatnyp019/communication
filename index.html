@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Device Info</title>
+</head>
+<body>
+    <h1>Device Information</h1>
+    <p id="fingerprint">Fingerprint: (Fetching...)</p>
+    <p id="hardware">Hardware: (Fetching...)</p>
+
+    <script>
+        // Function to update the page with device information
+        function updateDeviceInfo(fingerprint, hardware) {
+            document.getElementById("fingerprint").innerText = "Fingerprint: " + fingerprint;
+            document.getElementById("hardware").innerText = "Hardware: " + hardware;
+        }
+
+        // Check if the Android interface is available (running in WebView)
+        if (window.AndroidDeviceInfo) {
+            const fingerprint = AndroidDeviceInfo.getDeviceFingerprint();
+            const hardware = AndroidDeviceInfo.getDeviceHardware();
+            updateDeviceInfo(fingerprint, hardware);
+        }
+    </script>
+</body>
+</html>
