@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Device Info</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Device Info</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Check if values are injected
+      if (window.hardware && window.fingerprint) {
+        console.log("Hardware:", window.hardware);
+        console.log("Fingerprint:", window.fingerprint);
+
+        // Display on page (optional)
+        document.getElementById("hardware").textContent = "Hardware: " + window.hardware;
+        document.getElementById("fingerprint").textContent = "Fingerprint: " + window.fingerprint;
+      } else {
+        console.error("Device info not injected into WebView.");
+      }
+    });
+  </script>
 </head>
 <body>
-    <h1>Device Information</h1>
-    <p id="fingerprint">Fingerprint: (Fetching...)</p>
-    <p id="hardware">Hardware: (Fetching...)</p>
-
-    <script>
-        // Function to update the page with device information
-        function updateDeviceInfo(fingerprint, hardware) {
-            document.getElementById("fingerprint").innerText = "Fingerprint: " + fingerprint;
-            document.getElementById("hardware").innerText = "Hardware: " + hardware;
-        }
-
-        // Check if the Android interface is available (running in WebView)
-        if (window.AndroidDeviceInfo) {
-            const fingerprint = AndroidDeviceInfo.getDeviceFingerprint();
-            const hardware = AndroidDeviceInfo.getDeviceHardware();
-            updateDeviceInfo(fingerprint, hardware);
-        }
-    </script>
+  <h1>Device Info</h1>
+  <p id="hardware">Hardware: Not Available</p>
+  <p id="fingerprint">Fingerprint: Not Available</p>
 </body>
 </html>
