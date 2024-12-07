@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Device Info</title>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Check if values are injected
-      if (window.hardware && window.fingerprint) {
-        console.log("Hardware:", window.hardware);
-        console.log("Fingerprint:", window.fingerprint);
-
-        // Display on page (optional)
-        document.getElementById("hardware").textContent = "Hardware: " + window.hardware;
-        document.getElementById("fingerprint").textContent = "Fingerprint: " + window.fingerprint;
-      } else {
-        console.error("Device info not injected into WebView.");
-      }
-    });
-  </script>
+  <title>Display Redirected Values</title>
 </head>
 <body>
-  <h1>Device Info</h1>
-  <p id="hardware">Hardware: Not Available</p>
-  <p id="fingerprint">Fingerprint: Not Available</p>
+  <h1>Hardware: <span id="hardware">Loading...</span></h1>
+  <h2>Fingerprint: <span id="fingerprint">Loading...</span></h2>
+
+  <script>
+    // Function to get query parameters from the URL
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Retrieve hardware and fingerprint values from the query parameters
+    const hardware = getQueryParam("hardware");
+    const fingerprint = getQueryParam("fingerprint");
+
+    // Display the retrieved values in the <h1> and <h2> tags
+    document.getElementById("hardware").textContent = hardware || "No hardware value provided";
+    document.getElementById("fingerprint").textContent = fingerprint || "No fingerprint value provided";
+  </script>
 </body>
 </html>
