@@ -3,26 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Display Redirected Values</title>
+  <title>PAY</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha256.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-base64.min.js"></script>
 </head>
 <body>
-  <h1>Hardware: <span id="hardware">Loading...</span></h1>
-  <h2>Fingerprint: <span id="fingerprint">Loading...</span></h2>
 
-  <script>
-    // Function to get query parameters from the URL
-    function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    }
 
-    // Retrieve hardware and fingerprint values from the query parameters
-    const hardware = getQueryParam("hardware");
-    const fingerprint = getQueryParam("fingerprint");
+  <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST" onsubmit="generateSignature()" target="_blank">
 
-    // Display the retrieved values in the <h1> and <h2> tags
-    document.getElementById("hardware").textContent = hardware || "No hardware value provided";
-    document.getElementById("fingerprint").textContent = fingerprint || "No fingerprint value provided";
-  </script>
+    <br><br><table >
+        <h1>Details</h1>
+        <tbody>
+
+        <tr>
+            <td>Amount:</td>
+            <td> <input type="text" id="amount" name="amount" value="100" class="form" required="" readonly> <br>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Tax Amount:</td>
+            <td><input type="text" id="tax_amount" name="tax_amount" value="0" class="form" required="" readonly>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Total Amount:</td>
+            <td><input type="text" id="total_amount" name="total_amount" value="100" class="form" required="" readonly>
+            </td>
+        </tr>
+
+        <tr style="display: none;">
+            <td>Transaction UUID:</td>
+            <td><input type="text" id="transaction_uuid" name="transaction_uuid" value="11-200-111sss1" class="form" required="" readonly> </td>
+        </tr>
+
+        <tr style="display: none;">
+            <td>Product Code:</td>
+            <td><input type="text" id="product_code" name="product_code" value="EPAYTEST" class="form" required="" readonly> </td>
+        </tr>
+
+        <tr>
+            <td>Product Service Charge:</td>
+            <td><input type="text" id="product_service_charge" name="product_service_charge" value="0" class="form" required="" readonly> </td>
+        </tr>
+
+        <tr>
+            <td>Product Delivery Charge:</td>
+            <td><input type="text" id="product_delivery_charge" name="product_delivery_charge" value="0" class="form" required="" readonly> </td>
+        </tr>
+
+        <tr style="display: none;">
+            <td>Success URL:</td>
+            <td><input type="text" id="success_url" name="success_url" value="https://google.com" class="form" required="" readonly> </td>
+        </tr>
+
+        <tr style="display: none;">
+            <td>Failure URL:</td>
+            <td><input type="text" id="failure_url" name="failure_url" value="https://facebook.com" class="form" required="" readonly> </td>
+        </tr>
+
+        <tr style="display: none;">
+            <td>signed Field Names:</td>
+            <td><input type="text" id="signed_field_names" name="signed_field_names" value="total_amount,transaction_uuid,product_code" class="form" required="" readonly> </td>
+        </tr>
+
+        <tr style="display: none;">
+            <td>Signature:</td> 
+            <td><input type="text" id="signature" name="signature" value="4Ov7pCI1zIOdwtV2BRMUNjz1upIlT/COTxfLhWvVurE=" class="form" required="" readonly> </td>
+        </tr>
+        <tr style="display: none;">
+            <td>Secret Key:</td>
+            <td><input type="text" id="secret" name="secret" value="8gBm/:&EnhH.1/q" class="form" required="" readonly>
+            </td>
+        </tr>
+        
+    </tbody></table>
+    <input value=" Pay with eSewa " onclick="getFormData()" type="submit" class="button" style="display:block !important; background-color: #60bb46; cursor: pointer; color: #fff; border: none; padding: 5px 10px;">
+</form>
+
+<script src="script.js"></script>
+
 </body>
 </html>
