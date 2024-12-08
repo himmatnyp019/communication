@@ -7,7 +7,7 @@ function getQueryParam(param) {
 
   // Retrieve hardware and fingerprint values from the query parameters
 const details = getQueryParam("details");
-
+document.getElementById("supply").innerHTML = "This is supply " + details;
   // Create a new Date object
 let currentDate = new Date();
 
