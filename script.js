@@ -4,7 +4,7 @@ function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
   }
-
+//need to retrive uid along with other details but not done yet--------------------------------
   // Retrieve hardware and fingerprint values from the query parameters
 const details = getQueryParam("details");
 document.getElementById("supply").innerHTML = "This is supply " + details;
