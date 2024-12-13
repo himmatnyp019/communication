@@ -12,7 +12,7 @@
 <body>
 
 
-  <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST" onsubmit="generateSignature()" target="_blank">
+  <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST"  target="_blank">
 
     <br><br><table >
         <h1>Details</h1>
@@ -54,11 +54,11 @@
         <tr>
             <td>Product Delivery Charge:</td>
             <td><input type="text" id="product_delivery_charge" name="product_delivery_charge" value="0" class="form" required="" readonly> </td>
-        </tr>
+        </tr> 
 
-        <tr style="display: none;">
+        <tr style="display: visible;">
             <td>Success URL:</td>
-            <td><input type="text" id="success_url" name="success_url" value="https://google.com" class="form" required="" readonly> </td>
+            <td><input type="text" id="success_url" name="success_url" value="https://google.com" class="form" required="" > </td>
         </tr>
 
         <tr style="display: none;">
@@ -82,10 +82,10 @@
         </tr>
         
     </tbody></table>
-    <input value=" Pay with eSewa " onclick="getFormData()" type="submit" class="button" style="display:block !important; background-color: #60bb46; cursor: pointer; color: #fff; border: none; padding: 5px 10px;">
+    <input value=" Pay with eSewa " type="submit" class="button" style="display:block !important; background-color: #60bb46; cursor: pointer; color: #fff; border: none; padding: 5px 10px;">
 </form>
-<p id="supply"></p>
-<script src="script.js"></script>
+
+<script type="module" src="script.js"></script>
 
 </body>
 </html>
