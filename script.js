@@ -4,10 +4,10 @@ function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
   }
-//need to retrive uid along with other details but not done yet--------------------------------
+
   // Retrieve hardware and fingerprint values from the query parameters
-const details = getQueryParam("details");
-document.getElementById("supply").innerHTML = "This is supply " + details;
+let details = getQueryParam("details") + "jhefiusfbwlygruygweuw8efvbwrdfbjh";
+
   // Create a new Date object
 let currentDate = new Date();
 
@@ -17,8 +17,7 @@ let currentDateString = currentDate.toDateString();
 // Get current time
 let currentTimeString = currentDate.toLocaleTimeString();
 let datenTime = currentDateString + " " + currentTimeString;
-
-
+let sURL = "http://127.0.0.1:5500/success.html?hash="
   // Function to auto-generate signature
 function generateSignature() {
       var currentTime = new Date();
@@ -36,8 +35,9 @@ function generateSignature() {
           `${secret}`);
       var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
       document.getElementById("signature").value = hashInBase64;
-
-      console.log("the data is " + getFormData())
+      let supplyData = getFormData()
+      console.log("the data is " + supplyData)
+      return supplyData;
   }
 
   // Event listeners to call generateSignature() when inputs are changed
@@ -64,21 +64,17 @@ function getFormData() {
     // this functon should run after getting signature values
     // converting all strings into json format
     let data = {
-        amount: amount,
-        taxAmount : taxAmount,
-        totalAmount:taxAmount,
-        transectionUuid:transectionUuid,
-        productCode:productCode,
-        signature:signature,
-        secret:secret,
-        method:method,
-        purpose:purpose,
-        productName:productName,
-        currency:currency,
-        details:details,
-        dateTime:datenTime
+      // a: amount,
+        a: amount + "_" + taxAmount +"_"+ transectionUuid +"_"+ secret+"_"+method  +"_"+datenTime +"_" + productName,
+        d: details
 
     }
+
     return JSON.stringify(data);
 };
 
+let teraID = generateSignature();
+let encoded = encodeURIComponent(teraID)
+let finalUrl = `${sURL}${encoded}`;
+document.getElementById("success_url").value= finalUrl;
+console.log(finalUrl)
