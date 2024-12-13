@@ -36,7 +36,6 @@ function generateSignature() {
       var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
       document.getElementById("signature").value = hashInBase64;
       let supplyData = getFormData()
-      console.log("the data is " + supplyData)
       return supplyData;
   }
 
@@ -77,4 +76,3 @@ let teraID = generateSignature();
 let encoded = encodeURIComponent(teraID)
 let finalUrl = `${sURL}${encoded}`;
 document.getElementById("success_url").value= finalUrl;
-console.log(finalUrl)
