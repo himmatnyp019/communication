@@ -1,4 +1,8 @@
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getDatabase, ref,onValue, set, get, child } 
+from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
 function retriveSupplied(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
@@ -11,7 +15,6 @@ const id = parsify.d;
 console.log("imported-" + id)
 
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 // Your web app's Firebase configuration
 const firebaseConfig = {
  apiKey: "AIzaSyBndjXnSCIDEXaoErFPsoZmsiAxBUcUs14",
@@ -25,8 +28,6 @@ measurementId: "G-N3FSTY2T1C"
 };
 
 
-import { getDatabase, ref,onValue, set, get, child } 
-from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
