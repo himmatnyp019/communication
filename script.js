@@ -17,7 +17,7 @@ let currentDateString = currentDate.toDateString();
 // Get current time
 let currentTimeString = currentDate.toLocaleTimeString();
 let datenTime = currentDateString + " " + currentTimeString;
-let sURL = "http://127.0.0.1:5500/success.html?hash="
+let sURL = "https://himmatnyp019.github.io/communication/success.html?hash="
   // Function to auto-generate signature
 function generateSignature() {
       var currentTime = new Date();
