@@ -7,7 +7,6 @@ function getQueryParam(param) {
 
   // Retrieve hardware and fingerprint values from the query parameters
 let details = getQueryParam("details");
-console.log(details)
   // Create a new Date object
 let currentDate = new Date();
 
