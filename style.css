@@ -62,10 +62,14 @@ body {
         align-items: center;
         h2{
             text-align: center;
+            color: #333;
         }
         p{
             width: 100%;
             text-align: center;
+            color: #616161;
+            max-width: 450px;
+            justify-content: center;
         }
         .imagefront{
             height: 250px;
@@ -208,3 +212,5 @@ input[type="submit"], .button:hover {
         
     }
 }
+
+/* -------------------------failed page styling------------------------- */
