@@ -8,16 +8,17 @@ function retriveSupplied(param) {
     
 }
 let sDetails = retriveSupplied("hash")
-console.log(sDetails)
-let parsify = JSON.parse(sDetails)
-// const id = parsify.d;
-const id = parsify.id ? parsify.id : empty();
-
-console.log("imported-" + id)
 
 function empty() {
-    window.location="https://himmatnyp019.github.io/communication/failed.html"
+     window.location="https://himmatnyp019.github.io/communication/failed.html"
+
 }
+
+let parsify = JSON.parse(sDetails);
+
+let id = parsify.d ? parsify.d : empty();
+
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
  apiKey: "AIzaSyBndjXnSCIDEXaoErFPsoZmsiAxBUcUs14",
