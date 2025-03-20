@@ -5,8 +5,14 @@ function getQueryParam(param) {
     return urlParams.get(param);
   }
 
+
+  function irrupted() {
+    window.location="https://himmatnyp019.github.io/communication/failed.html"
+
+  }
   // Retrieve hardware and fingerprint values from the query parameters
-let details = getQueryParam("details");
+let details = getQueryParam("details") ? getQueryParam("details")  :irrupted();
+
   // Create a new Date object
 let currentDate = new Date();
 
@@ -67,7 +73,7 @@ function getFormData() {
         d: details
 
     }
-
+    
     return JSON.stringify(data);
 };
 
