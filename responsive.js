@@ -2,76 +2,94 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebas
 import { getDatabase, ref,onValue, set, get, child } 
 from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
+
+
+
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBndjXnSCIDEXaoErFPsoZmsiAxBUcUs14",
+   authDomain: "rent-zone.firebaseapp.com",
+   databaseURL: "https://rent-zone-default-rtdb.asia-southeast1.firebasedatabase.app",
+   projectId: "rent-zone",
+   storageBucket: "rent-zone.appspot.com",
+   messagingSenderId: "40068147938",
+   appId: "1:40068147938:android:b38ed41a22ef426b450cbb",
+   measurementId: "G-N3FSTY2T1C"
+   };
+   
+   
+   
+   // Initialize Firebase
+   const app = initializeApp(firebaseConfig);
+   
+   //get ref to database services
+   const db = getDatabase(app);
+
+   
 function retriveSupplied(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
     
 }
 let sDetails = retriveSupplied("hash")
-
 function empty() {
-     window.location="https://himmatnyp019.github.io/communication/failed.html"
+     window.location="https://himmatnyp019.github.io/communication/failed.html";
+ 
 
 }
 
-let parsify = JSON.parse(sDetails);
 
-let id = parsify.d ? parsify.d : empty();
-
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
- apiKey: "AIzaSyBndjXnSCIDEXaoErFPsoZmsiAxBUcUs14",
-authDomain: "rent-zone.firebaseapp.com",
-databaseURL: "https://rent-zone-default-rtdb.asia-southeast1.firebasedatabase.app",
-projectId: "rent-zone",
-storageBucket: "rent-zone.appspot.com",
-messagingSenderId: "40068147938",
-appId: "1:40068147938:android:b38ed41a22ef426b450cbb",
-measurementId: "G-N3FSTY2T1C"
-};
+let id;
 
 
+try {
+    let parsify = JSON.parse(sDetails);
+    
+    if (parsify.hasOwnProperty("d")) {
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+        id = parsify.d ? parsify.d : empty();
+        const path = "errorSubmit";
+        const keyToCheck = id;
+        checkChildKeyExists(db, path, keyToCheck);
 
-//get ref to database services
-const db = getDatabase(app);
+    } else {
+        console.log("Error not a valid json")
+    }
+
+    
+} catch (e) {
+    console.log("e errror : ", e)
+}
+
 
 function update(e) {
-    // e.preventDefault();
     try {
-        // Upload data to Firebase
         set(ref(db, 'errorSubmit/' + id), {
             check: sDetails,
         })
         .then(() => {
-            // This will execute if the upload is successful
-            
+            console.log("added succesfully");
             
 
         })
         .catch((error) => {
-            // This will execute if there's an error
             alert("Error uploading data: " + error.message);
+
         });
     } catch (error) {
-        // Catch any synchronous errors
         alert("Unexpected error: " + error.message);
     }
 };
 
 
-// Add a listener to check if the child key exists
 function checkChildKeyExists(db, path, keyToCheck) {
-    const dbRef = ref(db, path); // Reference to the desired path in the database
+    const dbRef = ref(db, path); 
 
     onValue(dbRef, (snapshot) => {
         if (snapshot.exists()) {
             const data = snapshot.val();
 
-            // Check if the specific key exists in the data
             if (data.hasOwnProperty(keyToCheck)) {
              
             } else {
@@ -87,7 +105,7 @@ function checkChildKeyExists(db, path, keyToCheck) {
     });
 }
 
-// Example Usage
-const path = "errorSubmit";
-const keyToCheck = id; // Replace with your key
-checkChildKeyExists(db, path, keyToCheck);
+
+
+
+
