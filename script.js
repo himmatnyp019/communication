@@ -7,12 +7,12 @@ function getQueryParam(param) {
 
 
   function irrupted() {
-    window.location="https://himmatnyp019.github.io/communication/failed.html"
+    window.location="communication/failed.html"
 
   }
   // Retrieve hardware and fingerprint values from the query parameters
 let details = getQueryParam("details") ? getQueryParam("details")  :irrupted();
-
+document.getElementById('checkID').setValue = details;
   // Create a new Date object
 let currentDate = new Date();
 
