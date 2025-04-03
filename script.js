@@ -7,7 +7,7 @@ function getQueryParam(param) {
 
 
   function irrupted() {
-    window.location="failed.html"
+  window.location="https://himmatnyp019.github.io/communication/failed.html"
 
   }
   // Retrieve hardware and fingerprint values from the query parameters
