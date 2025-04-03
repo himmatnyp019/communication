@@ -12,7 +12,7 @@ function getQueryParam(param) {
   }
   // Retrieve hardware and fingerprint values from the query parameters
 let details = getQueryParam("details") ? getQueryParam("details")  :irrupted();
-document.getElementById('checkID').setValue = details;
+document.getElementById('checkID').textContent = details;
   // Create a new Date object
 let currentDate = new Date();
 
